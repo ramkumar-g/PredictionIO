@@ -1,41 +1,28 @@
-Contributing to PredictionIO
-============================
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
 
-Thank you for your interest in contributing to PredictionIO!
+    http://www.apache.org/licenses/LICENSE-2.0
 
-We are building this software together and strongly encourage contributions
-from the community that are within the guidelines set forth below.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
 
+Thank you for your interest in contributing to Apache PredictionIO.
+Our mission is to enable developers to build scalable machine learning applications easily.
+Here is how you can help with the project development. If you have any
+question regarding development at anytime, please free to subscribe and post to
+the Development Mailing List <mailto:dev-subscribe@predictionio.apache.org>.
 
-Bug Fixes and New Features
---------------------------
+For code contribution, please follow guidelines at
+http://predictionio.apache.org/community/contribute-code/.
 
-As your first step, please visit and read the [Contributor License Agreement]
-(http://prediction.io/cla). All contributors are required to sign this
-agreement.
-
-
-Before starting to write code, look for existing [tickets]
-(https://predictionio.atlassian.net/browse/PDIO) or [create one]
-(https://predictionio.atlassian.net/secure/CreateIssue!default.jspa)
-for your bug, issue, or feature request. This helps the community
-avoid working on something that might not be of interest or which
-has already been addressed.
-
-
-Pull Requests
--------------
-
-PredictionIO follows the [git-flow]
-(http://nvie.com/posts/a-successful-git-branching-model/) model where all
-active development goes to the develop branch, and releases go to the master
-branch. Pull requests should be made against the develop branch and include
-relevant tests, if applicable.
-
-
-Talk To Us
-----------
-
-We love to hear from you. If you want to work on something or have
-questions / feedback, please reach out to us at
-https://groups.google.com/forum/#!forum/predictionio-dev
+For documentation contribution, please follow guidelines at
+http://predictionio.apache.org/community/contribute-documentation/.

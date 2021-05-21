@@ -1,23 +1,117 @@
+##########
+# This is .travis.yml configuration file specifically for master and develop branch.
+# The travis job should contains only unit and integration tests.
+#
+# To avoid this file from being overwritten by .travis.yml from other branches,
+# please add the following to your local git config:
+#   git config merge.ours.driver true
+##########
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+branches:
+  except:
+    - livedoc
+
 language: scala
-env:
-  - PLAY_VERSION=2.2.2
-scala:
-  - "2.10.3"
+
 jdk:
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
-services: mongodb
+  - openjdk8
+
+services:
+  - docker
+
+sudo: required
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot
+    - $HOME/.sbt/launchers
+
+env:
+  matrix:
+    - BUILD_TYPE=Unit
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+    - BUILD_TYPE=Integration
+      METADATA_REP=ELASTICSEARCH EVENTDATA_REP=ELASTICSEARCH MODELDATA_REP=S3
+      PIO_ELASTICSEARCH_VERSION=6.8.1
+    - BUILD_TYPE=Integration
+      METADATA_REP=ELASTICSEARCH EVENTDATA_REP=HBASE MODELDATA_REP=LOCALFS
+      PIO_HBASE_VERSION=1.2.6
+
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.0.2
+      PIO_HADOOP_VERSION=2.6.5
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.1.3
+      PIO_HADOOP_VERSION=2.6.5
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.2.3
+      PIO_HADOOP_VERSION=2.6.5
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=HDFS
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.3.3
+      PIO_HADOOP_VERSION=2.6.5
+
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.0.2
+      PIO_HADOOP_VERSION=2.7.7
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.1.3
+      PIO_HADOOP_VERSION=2.7.7
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=PGSQL
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.2.3
+      PIO_HADOOP_VERSION=2.7.7
+    - BUILD_TYPE=Integration
+      METADATA_REP=PGSQL EVENTDATA_REP=PGSQL MODELDATA_REP=HDFS
+      PIO_SCALA_VERSION=2.11.12
+      PIO_SPARK_VERSION=2.4.0
+      PIO_HADOOP_VERSION=2.7.7
+
+    - BUILD_TYPE=LicenseCheck
+
+before_install:
+  - unset SBT_OPTS JVM_OPTS
+  - sudo rm /usr/local/bin/docker-compose
+  - travis_retry curl -L https://github.com/docker/compose/releases/download/1.11.1/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
 before_script:
-  - wget http://downloads.typesafe.com/play/${PLAY_VERSION}/play-${PLAY_VERSION}.zip
-  - unzip -q play-${PLAY_VERSION}.zip
+  - sudo sysctl -w vm.max_map_count=262144
+  - docker-compose -v
+  - travis_retry ./tests/before_script.travis.sh
+
 script:
-  - sbt test
-  - sbt commons/publish
-  - sbt output/publish
-  - cd servers/admin
-  - ../../play-${PLAY_VERSION}/play test
-  - cd ../api
-  - ../../play-${PLAY_VERSION}/play test
-  - cd ../scheduler
-  - ../../play-${PLAY_VERSION}/play test
+  - travis_retry ./tests/script.travis.sh
+
+after_script:
+  - ./tests/after_script.travis.sh

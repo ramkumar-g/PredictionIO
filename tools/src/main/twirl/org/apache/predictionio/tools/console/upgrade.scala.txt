@@ -1,0 +1,3 @@
+Usage: pio upgrade <from version> <to version> <old App ID> <new app ID>
+
+No longer supported!

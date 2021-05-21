@@ -1,0 +1,35 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+PredictionIO's DASE architecture brings the separation-of-concerns design
+principle to predictive engine development. DASE stands for the following
+components of an engine:
+
+* **D**ata - includes Data Source and Data Preparator
+* **A**lgorithm(s)
+* **S**erving
+* **E**valuator
+
+Let's look at the code and see how you can customize the engine you built from 
+the <%= template_name %>.
+
+<% if defined?(evaluation_link) %>
+NOTE: Evaluator will not be covered in this tutorial. 
+Please visit [evaluation explained](<%= evaluation_link%>) for using evaluation.
+<% else %>
+NOTE: Evaluator will not be covered in this tutorial.
+<% end %>

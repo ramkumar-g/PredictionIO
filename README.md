@@ -1,70 +1,97 @@
-PredictionIO
-============
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
 
-[![Build Status](https://travis-ci.org/PredictionIO/PredictionIO.svg?branch=develop)](https://travis-ci.org/PredictionIO/PredictionIO)
+    http://www.apache.org/licenses/LICENSE-2.0
 
-PredictionIO is a prediction server for building smart applications. You can make
-predictions through PredictionIO just as you would filter data using a database server.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
 
-With PredictionIO, you can write apps
-* that predict user behaviors based on solid data science
-* using your choice of state-of-the-art machine learning algorithms
-* without worrying about scalability
+# [Apache PredictionIO](http://predictionio.apache.org)
 
-Detailed documentation is available on our
-[documentation site](http://docs.prediction.io).
+[![Build
+Status](https://api.travis-ci.org/apache/predictionio.svg?branch=develop)](https://travis-ci.org/apache/predictionio)
 
-PredictionIO Project Website: [http://prediction.io/](http://prediction.io/).
+Apache PredictionIO is an open source machine learning framework
+for developers, data scientists, and end users. It supports event collection,
+deployment of algorithms, evaluation, querying predictive results via REST APIs.
+It is based on scalable open source services like Hadoop, HBase (and other DBs),
+Elasticsearch, Spark and implements what is called a Lambda Architecture.
 
-
-INSTALLATION
-============
-
-Install PredictionIO from Source Code:
-http://docs.prediction.io/current/installation/index.html
-
-
-SUPPORT
-=======
-
-
-Forum
------
-
-https://groups.google.com/group/predictionio-user
+To get started, check out http://predictionio.apache.org!
 
 
-Issue Tracker
--------------
+## Table of contents
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Bugs and Feature Requests](#bugs-and-feature-requests)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [Community](#community)
 
-https://predictionio.atlassian.net
 
-If you are unsure whether a behavior is an issue, bringing it up in the forum is highly encouraged.
+## Installation
+
+A few installation options available.
+
+*   [Installing Apache PredictionIO from
+    Binary/Source](http://predictionio.apache.org/install/install-sourcecode/)
+*   [Installing Apache PredictionIO with
+    Docker](http://predictionio.apache.org/install/install-docker/)
+
+## Quick Start
+
+*   [Recommendation Engine Template Quick
+    Start](http://predictionio.apache.org/templates/recommendation/quickstart/)
+    Guide
+*   [Similiar Product Engine Template Quick
+    Start](http://predictionio.apache.org/templates/similarproduct/quickstart/)
+    Guide
+*   [Classification Engine Template Quick
+    Start](http://predictionio.apache.org/templates/classification/quickstart/)
+    Guide
 
 
-LICENSE
-=======
+## Bugs and Feature Requests
 
-The goal of the server license is to require that enhancements to the
-PredictionIO core be released to the community. We promise that your client
-application, which connects to PredictionIO through SDKs or APIs, is a separate
-work. Official PredictionIO SDKs are released under Apache license, which is
-copyleft free.
+Use [Apache JIRA](https://issues.apache.org/jira/browse/PIO) to report bugs or request new features.
 
-PredictionIO SDKs
------------------
+## Documentation
 
-PredictionIO supported SDKs:
-[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0).
+Documentation, included in this repo in the `docs/manual` directory, is built
+with [Middleman](http://middlemanapp.com/) and publicly hosted at
+[predictionio.apache.org](http://predictionio.apache.org/).
 
-PredictionIO Server
--------------------
+Interested in helping with our documentation? Read [Contributing
+Documentation](http://predictionio.apache.org/community/contribute-documentation/).
 
-Free Software Foundation’s
-[GNU AGPL v3.0](http://www.gnu.org/licenses/agpl-3.0.html).
 
-Documentation
--------------
+## Community
 
-Creative Commons
-[Attribution 3.0 Unported](http://creativecommons.org/licenses/by/3.0/).
+Keep track of development and community news.
+
+*   Subscribe to the user mailing list <mailto:user-subscribe@predictionio.apache.org>
+    and the dev mailing list <mailto:dev-subscribe@predictionio.apache.org>
+*   Follow [@predictionio](https://twitter.com/predictionio) on Twitter.
+
+
+## Contributing
+
+Read the [Contribute Code](http://predictionio.apache.org/community/contribute-code/) page.
+
+You can also list your projects on the [Community Project
+page](http://predictionio.apache.org//community/projects/).
+
+
+## License
+
+Apache PredictionIO is under [Apache 2
+license](http://www.apache.org/licenses/LICENSE-2.0.html).

@@ -1,0 +1,18 @@
+{
+  "name": "predictionio.apache.org",
+  "description": "Apache PredictionIO Documentation",
+  "license": "Apache-2.0",
+  "homepage": "predictionio.apache.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "normalize.css": "~3.0.2",
+    "Slidebars": "~0.10.2",
+    "Tabslet": "~1.4.8",
+    "jcarousel": "~0.3.3"
+  }
+}

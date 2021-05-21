@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: http://predictionio.apache.org/sitemap.xml

@@ -1,0 +1,58 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+[PostgreSQL](https://www.postgresql.org/) can be used by PredictionIO as a
+storage backend for all 3 repositories (event data, meta data, and model data).
+This is perhaps the easiest route if you are trying PredictionIO for the first
+time.
+
+Make sure you have PostgreSQL installed. For Mac Users,
+[Homebrew](https://brew.sh/) is recommended and can be used as
+
+```
+$ brew install postgresql
+```
+or on Ubuntu:
+
+```
+$ apt-get install postgresql
+```
+
+Now that PostgreSQL is installed use the following comands
+
+```
+$ createdb pio
+```
+
+If you get an error of the form `could not connect to server: No such file or
+directory`, then you must first start the server manually,:
+
+```
+$ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+```
+
+Finally use the command:
+
+```
+$ psql -c "create user pio with password 'pio'"
+```
+
+Starting from 0.11.0, PredictionIO no longer bundles JDBC drivers. Download the
+PostgreSQL JDBC driver from the [official web
+site](https://jdbc.postgresql.org/), and put the JAR file in the `lib`
+subdirectory. Afterwords, you need to edit `conf/pio-env.sh` and change the
+`POSTGRES_JDBC_DRIVER` variable to point to the correct JAR.

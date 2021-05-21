@@ -1,0 +1,183 @@
+---
+title: Installing Apache PredictionIO®
+---
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+INFO: Assuming you are following the directory structure in the following,
+replace `/home/abc` with your own home directory wherever you see it.
+
+## Downloading Binary Distribution
+
+Download [binary release from an Apache
+mirror](https://www.apache.org/dyn/closer.lua/predictionio/<%= data.versions.pio
+%>/apache-predictionio-<%= data.versions.pio %>-bin.tar.gz).
+
+### Verifying Release
+
+Verify binary release using the [signatures and checksums]
+(https://archive.apache.org/dist/predictionio/<%= data.versions.pio %>/)
+and [project release KEYS](https://www.apache.org/dist/predictionio/KEYS).
+
+```
+$ gpg --import KEYS
+$ gpg --verify apache-predictionio-<%= data.versions.pio %>-bin.tar.gz.asc apache-predictionio-<%= data.versions.pio %>-bin.tar.gz
+```
+
+You should see something like this.
+
+```
+gpg: Signature made Tue Sep 26 22:55:22 2017 PDT
+gpg:                using RSA key 7E2363D84719A8F4
+gpg: Good signature from "Chan Lee <chanlee@apache.org>" [ultimate]
+```
+
+For further information, the [official guide from
+Apache](https://www.apache.org/info/verification.html) has the most up-to-date
+and complete information.
+
+### Installation
+
+Extract the binary distribution and proceed to
+[Installing Dependencies](#installing-dependencies).
+
+```
+$ tar zxvf apache-predictionio-<%= data.versions.pio %>-bin.tar.gz
+```
+
+## Downloading Source Code
+
+Download [source release from an Apache
+mirror](https://archive.apache.org/dist/predictionio/<%= data.versions.pio
+%>/apache-predictionio-<%= data.versions.pio %>.tar.gz).
+
+### Verifying Release
+
+Verify source release using [signatures and checksums]
+(https://archive.apache.org/dist/predictionio/<%= data.versions.pio %>/)
+and [project release KEYS](https://www.apache.org/dist/predictionio/KEYS).
+
+```
+$ gpg --import KEYS
+$ gpg --verify apache-predictionio-<%= data.versions.pio %>.tar.gz.asc apache-predictionio-<%= data.versions.pio %>.tar.gz
+```
+
+You should see something like this.
+
+```
+gpg: Signature made Tue Sep 26 22:55:22 2017 PDT
+gpg:                using RSA key 7E2363D84719A8F4
+gpg: Good signature from "Chan Lee <chanlee@apache.org>" [ultimate]
+```
+
+For further information, the [official guide from
+Apache](https://www.apache.org/info/verification.html) has the most up-to-date
+and complete information.
+
+### Building
+
+Run the following at the directory where you downloaded the source code to build
+
+Apache PredictionIO®. By default, the build will be against
+
+* Scala 2.11.8
+* Spark 2.1.1
+* Hadoop 2.7.7
+* Elasticsearch 5.6.9
+
+
+```
+$ tar zxvf apache-predictionio-<%= data.versions.pio %>.tar.gz
+$ cd apache-predictionio-<%= data.versions.pio %>
+$ ./make-distribution.sh -Dscala.version=2.11.12 -Dspark.version=2.4.0 -Delasticsearch.version=6.4.2
+```
+
+You should see something like the following when it finishes building
+successfully.
+
+```
+...
+PredictionIO-<%= data.versions.pio %>/sbt/sbt
+PredictionIO-<%= data.versions.pio %>/conf/
+PredictionIO-<%= data.versions.pio %>/conf/pio-env.sh
+PredictionIO binary distribution created at PredictionIO-<%= data.versions.pio %>.tar.gz
+```
+
+Extract the binary distribution you have just built.
+
+```
+$ tar zxvf PredictionIO-<%= data.versions.pio %>.tar.gz
+```
+
+## Installing Dependencies
+
+Let us install dependencies inside a subdirectory of the Apache PredictionIO
+installation. By following this convention, you can use
+Apache PredictionIO's default configuration as is.
+
+```
+$ mkdir PredictionIO-<%= data.versions.pio %>/vendors
+```
+
+
+### Spark Setup
+
+<%= partial 'shared/install/spark' %>
+
+
+### Storage Setup
+
+#### <a name="pgsql"></a>PostgreSQL Setup
+
+WARNING: You may skip this section if you are not using PostgreSQL.
+
+<%=partial 'shared/install/postgres' %>
+
+#### HBase and Elasticsearch Setup
+
+##### Elasticsearch Setup
+
+WARNING: You may skip this section if you are not using Elasticsearch.
+
+<%= partial 'shared/install/elasticsearch' %>
+
+
+##### <a name="hbase"></a>HBase Setup
+
+WARNING: You may skip this section if you are not using HBase.
+
+<%= partial 'shared/install/hbase' %>
+
+
+In addition, you must set your environment variable `JAVA_HOME`. For example, in
+`/home/abc/.bashrc` add the following line:
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+```
+
+
+<%= partial 'shared/install/dependent_services' %>
+
+
+
+
+
+Now you have installed everything you need!
+
+<%= partial 'shared/install/proceed_template' %>

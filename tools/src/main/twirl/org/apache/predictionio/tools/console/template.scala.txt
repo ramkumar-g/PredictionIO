@@ -1,0 +1,3 @@
+Usage: pio template list
+
+No longer supported! Please use git to download and manage your templates.
